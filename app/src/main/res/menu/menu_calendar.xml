@@ -4,6 +4,9 @@
         android:id="@+id/iSettings"
         android:title="Settings" />
     <item
+        android:id="@+id/iEmployers"
+        android:title="Employers" />
+    <item
         android:id="@+id/iShifts"
         android:title="Shifts" />
     <item

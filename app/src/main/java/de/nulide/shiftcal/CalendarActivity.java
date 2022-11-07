@@ -376,6 +376,10 @@ public class CalendarActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.iEmployers:
+                intent = new Intent(this, EmployersActivity.class);
+                startActivity(intent);
+                return true;
             case R.id.iShifts:
                 intent = new Intent(this, ShiftsActivity.class);
                 startActivity(intent);
