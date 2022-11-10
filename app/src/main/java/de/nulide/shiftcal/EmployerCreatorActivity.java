@@ -44,7 +44,7 @@ public class EmployerCreatorActivity extends AppCompatActivity implements View.O
         etViewName = findViewById(R.id.scEditTextName);
 
         if (toEditEmployer != -1) {
-
+            etViewName.setText(em.getEmployerByIndex(toEditEmployer).getName());
         }
     }
 
@@ -55,7 +55,6 @@ public class EmployerCreatorActivity extends AppCompatActivity implements View.O
 
             if (!name.isEmpty()) {
                 Employer nE;
-                nE = new Employer(name, )
             }
         }
     }

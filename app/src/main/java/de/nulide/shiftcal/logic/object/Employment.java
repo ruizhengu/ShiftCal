@@ -23,6 +23,16 @@ public class Employment {
         return employers;
     }
 
+    public Employer getEmployerById(int id) {
+        Employer e = new Employer();
+        for (int i = 0; i < employers.size(); i++) {
+            if (employers.get(i).getId() == id) {
+                return employers.get(i);
+            }
+        }
+        return e;
+    }
+
     public Employer getEmployerByIndex(int i) {
         return employers.get(i);
     }
