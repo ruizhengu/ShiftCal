@@ -1,12 +1,16 @@
 package de.nulide.shiftcal.logic.io;
 
 import de.nulide.shiftcal.logic.io.object.JSONCalendarDate;
+import de.nulide.shiftcal.logic.io.object.JSONEmployer;
+import de.nulide.shiftcal.logic.io.object.JSONEmployment;
 import de.nulide.shiftcal.logic.io.object.JSONSettings;
 import de.nulide.shiftcal.logic.io.object.JSONShift;
 import de.nulide.shiftcal.logic.io.object.JSONShiftCalendar;
 import de.nulide.shiftcal.logic.io.object.JSONShiftTime;
 import de.nulide.shiftcal.logic.io.object.JSONWorkDay;
 import de.nulide.shiftcal.logic.object.CalendarDate;
+import de.nulide.shiftcal.logic.object.Employer;
+import de.nulide.shiftcal.logic.object.Employment;
 import de.nulide.shiftcal.logic.object.Settings;
 import de.nulide.shiftcal.logic.object.Shift;
 import de.nulide.shiftcal.logic.object.ShiftCalendar;
@@ -37,6 +41,22 @@ public class JSONFactory {
         return sc;
     }
 
+    public static JSONEmployment convertEmploymentToJSON(Employment em) {
+        JSONEmployment jem = new JSONEmployment();
+        for (int i = 0; i < em.getEmployersSize(); i++) {
+            jem.getEmployers().add(convertEmployerToJSON(em.getEmployerByIndex(i)));
+        }
+        return jem;
+    }
+
+    public static Employment convertJSONToEmployment(JSONEmployment jem) {
+        Employment em = new Employment();
+        for (int i = 0; i < em.getEmployersSize(); i++) {
+            em.addEmployer(convertJSONToEmployer(jem.getEmployers().get(i)));
+        }
+        return em;
+    }
+
     public static JSONCalendarDate convertCalendarDateToJSON(CalendarDate cd) {
         return new JSONCalendarDate(cd.getYear(), cd.getMonth(), cd.getDay());
     }
@@ -63,6 +83,14 @@ public class JSONFactory {
         return new Shift(ss.getName(), ss.getShort_name(), ss.getId(),
                 convertJSONToShiftTime(ss.getStartTime()), convertJSONToShiftTime(ss.getEndTime()),
                 ss.getColor(), ss.isToAlarm(), ss.isArchieved());
+    }
+
+    public static JSONEmployer convertEmployerToJSON(Employer e) {
+        return new JSONEmployer(e.getName(), e.getId(), e.isArchived());
+    }
+
+    public static Employer convertJSONToEmployer(JSONEmployer je) {
+        return new Employer(je.getName(), je.getId(), je.isArchived());
     }
 
     public static JSONWorkDay convertWorkDayToJSON(WorkDay wd) {

@@ -20,20 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".EmployerCreatorActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".EmployersActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".settings.CalendarSyncActivity"
             android:label="@string/title_activity_calendar_sync"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -69,6 +55,14 @@
         <activity
             android:name=".ShiftsActivity"
             android:label="@string/title_activity_shifts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EmployerCreatorActivity"
+            android:label="@string/title_activity_employer_creator"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EmployersActivity"
+            android:label="@string/title_activity_employers"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CalendarActivity"
