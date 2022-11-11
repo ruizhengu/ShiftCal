@@ -51,7 +51,7 @@ public class JSONFactory {
 
     public static Employment convertJSONToEmployment(JSONEmployment jem) {
         Employment em = new Employment();
-        for (int i = 0; i < em.getEmployersSize(); i++) {
+        for (int i = 0; i < jem.getEmployers().size(); i++) {
             em.addEmployer(convertJSONToEmployer(jem.getEmployers().get(i)));
         }
         return em;

@@ -1,6 +1,7 @@
 package de.nulide.shiftcal.ui;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.Layout;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -15,15 +16,14 @@ import java.util.ArrayList;
 
 import de.nulide.shiftcal.R;
 import de.nulide.shiftcal.logic.object.Employer;
-import de.nulide.shiftcal.logic.object.Shift;
 
-public class EmployerAdapter extends ArrayAdapter<Shift> {
+public class EmployerAdapter extends ArrayAdapter<Employer> {
 
     private final Context context;
     private final ArrayList<Employer> employers;
 
     public EmployerAdapter(@NonNull Context context, ArrayList<Employer> employers) {
-        super(context, R.layout.row_employer);
+        super(context, R.layout.row_employer, employers);
         this.context = context;
         this.employers = employers;
     }
@@ -36,7 +36,8 @@ public class EmployerAdapter extends ArrayAdapter<Shift> {
         TextView tvName = rowView.findViewById(R.id.textViewName);
 
         tvName.setText(employers.get(position).getName());
-        tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 39f);
+        tvName.setTypeface(null, Typeface.BOLD);
 
         return rowView;
     }

@@ -6,6 +6,9 @@ public class JSONEmployer {
     private int id;
     private boolean archived;
 
+    public JSONEmployer() {
+    }
+
     public JSONEmployer(String name, int id, boolean archived) {
         this.name = name;
         this.id = id;

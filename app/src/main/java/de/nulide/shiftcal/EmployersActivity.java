@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +21,6 @@ import de.nulide.shiftcal.logic.io.IO;
 import de.nulide.shiftcal.logic.object.Employer;
 import de.nulide.shiftcal.logic.object.Employment;
 import de.nulide.shiftcal.logic.object.Settings;
-import de.nulide.shiftcal.logic.object.Shift;
 import de.nulide.shiftcal.sync.SyncHandler;
 import de.nulide.shiftcal.tools.ColorHelper;
 import de.nulide.shiftcal.ui.EmployerAdapter;
@@ -54,6 +54,7 @@ public class EmployersActivity extends AppCompatActivity implements View.OnClick
     public void updateEmployers() {
         em = IO.readEmployment(getFilesDir());
         employers = new ArrayList<>(em.getEmployerList());
+        Log.i("Test", String.valueOf(employers));
         EmployerAdapter adapter = new EmployerAdapter(this, employers);
         listViewEmployers.setAdapter(adapter);
     }
@@ -85,7 +86,7 @@ public class EmployersActivity extends AppCompatActivity implements View.OnClick
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int index = info.position;
         if (item.getTitle() == "Edit") {
-            Intent myIntent = new Intent(this, ShiftCreatorActivity.class);
+            Intent myIntent = new Intent(this, EmployerCreatorActivity.class);
             myIntent.putExtra("toEditEmployer", employers.get(index).getId());
             startActivity(myIntent);
         } else if (item.getTitle() == "Delete") {

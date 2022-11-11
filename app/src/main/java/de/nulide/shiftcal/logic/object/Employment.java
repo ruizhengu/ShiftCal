@@ -1,5 +1,7 @@
 package de.nulide.shiftcal.logic.object;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
