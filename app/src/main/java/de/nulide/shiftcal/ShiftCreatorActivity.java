@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -108,6 +109,7 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
         if (toEditShift != -1) {
             etViewName.setText(sc.getShiftById(toEditShift).getName());
             etViewSName.setText(sc.getShiftById(toEditShift).getShort_name());
+            spinnerEmployer.setSelection(sc.getShiftById(toEditShift).getEmployerIndex());
             stStart = sc.getShiftById(toEditShift).getStartTime();
             stEnd = sc.getShiftById(toEditShift).getEndTime();
             swAlarmForShift.setChecked(sc.getShiftById(toEditShift).isToAlarm());
@@ -121,13 +123,13 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
         if (view == fabDoneShift) {
             String name = etViewName.getText().toString();
             String sname = etViewSName.getText().toString();
-
+            int employerIndex = (int) spinnerEmployer.getSelectedItemId();
             if (!name.isEmpty() && !sname.isEmpty()) {
                 Shift nS;
                 if (swAlarmForShift.isEnabled()) {
-                    nS = new Shift(name, sname, sc.getNextShiftId(), stStart, stEnd, ((ColorDrawable) btnCP.getBackground()).getColor(), swAlarmForShift.isChecked(), false);
+                    nS = new Shift(name, sname, employerIndex, sc.getNextShiftId(), stStart, stEnd, ((ColorDrawable) btnCP.getBackground()).getColor(), swAlarmForShift.isChecked(), false);
                 } else {
-                    nS = new Shift(name, sname, sc.getNextShiftId(), stStart, stEnd, ((ColorDrawable) btnCP.getBackground()).getColor(), true, false);
+                    nS = new Shift(name, sname, employerIndex, sc.getNextShiftId(), stStart, stEnd, ((ColorDrawable) btnCP.getBackground()).getColor(), true, false);
                 }
                 if (toEditShift != -1) {
                     nS.setId(sc.getShiftById(toEditShift).getId());

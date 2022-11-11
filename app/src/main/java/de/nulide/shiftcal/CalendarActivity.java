@@ -263,7 +263,7 @@ public class CalendarActivity extends AppCompatActivity implements View.OnClickL
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 ListView listViewShifts = (ListView) dialoglayout;
                 shifts = new ArrayList<Shift>(sc.getShiftList());
-                shifts.add(new Shift("Delete", "D", -2, null, null, Color.RED, true, false));
+                shifts.add(new Shift("Delete", "D", -1, -2, null, null, Color.RED, true, false));
                 ShiftAdapter adapter = new ShiftAdapter(this, shifts);
                 listViewShifts.setAdapter(adapter);
                 listViewShifts.setOnItemClickListener(this);

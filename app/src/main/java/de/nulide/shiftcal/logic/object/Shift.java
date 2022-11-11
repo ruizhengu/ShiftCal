@@ -7,6 +7,7 @@ import de.nulide.shiftcal.ui.ShiftDayViewDecorator;
 public class Shift {
     private String name;
     private String short_name;
+    private int employerIndex;
     private int id;
     private ShiftTime startTime;
     private ShiftTime endTime;
@@ -16,9 +17,10 @@ public class Shift {
     private boolean toAlarm;
     private boolean archieved;
 
-    public Shift(String name, String short_name, int id, ShiftTime startTime, ShiftTime endTime, int color, boolean toAlarm, boolean archieved) {
+    public Shift(String name, String short_name, int employerIndex, int id, ShiftTime startTime, ShiftTime endTime, int color, boolean toAlarm, boolean archieved) {
         this.name = name;
         this.short_name = short_name;
+        this.employerIndex = employerIndex;
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -51,6 +53,14 @@ public class Shift {
 
     public void setShort_name(String short_name) {
         this.short_name = short_name;
+    }
+
+    public int getEmployerIndex() {
+        return employerIndex;
+    }
+
+    public void setEmployerIndex(int employerIndex) {
+        this.employerIndex = employerIndex;
     }
 
     public int getId() {
@@ -105,11 +115,11 @@ public class Shift {
         this.toAlarm = toAlarm;
     }
 
-    public void setArchieved(){
+    public void setArchieved() {
         this.archieved = true;
     }
 
-    public boolean isArchieved(){
+    public boolean isArchieved() {
         return this.archieved;
     }
 

@@ -4,6 +4,7 @@ public class JSONShift {
 
     private String name;
     private String short_name;
+    private int employerIndex;
     private int id;
     private JSONShiftTime startTime;
     private JSONShiftTime endTime;
@@ -14,9 +15,10 @@ public class JSONShift {
     public JSONShift() {
     }
 
-    public JSONShift(String name, String short_name, int id, JSONShiftTime startTime, JSONShiftTime endTime, int color, boolean toAlarm, boolean archieved) {
+    public JSONShift(String name, String short_name, int employerIndex, int id, JSONShiftTime startTime, JSONShiftTime endTime, int color, boolean toAlarm, boolean archieved) {
         this.name = name;
         this.short_name = short_name;
+        this.employerIndex = employerIndex;
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -39,6 +41,14 @@ public class JSONShift {
 
     public void setShort_name(String short_name) {
         this.short_name = short_name;
+    }
+
+    public int getEmployerIndex() {
+        return employerIndex;
+    }
+
+    public void setEmployerIndex(int employerIndex) {
+        this.employerIndex = employerIndex;
     }
 
     public int getId() {

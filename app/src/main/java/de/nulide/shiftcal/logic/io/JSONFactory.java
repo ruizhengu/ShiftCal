@@ -74,13 +74,13 @@ public class JSONFactory {
     }
 
     public static JSONShift convertShiftToJSON(Shift s) {
-        return new JSONShift(s.getName(), s.getShort_name(), s.getId(),
+        return new JSONShift(s.getName(), s.getShort_name(), s.getEmployerIndex(), s.getId(),
                 convertShiftTimeToJSON(s.getStartTime()), convertShiftTimeToJSON(s.getEndTime()),
                 s.getColor(), s.isToAlarm(), s.isArchieved());
     }
 
     public static Shift convertJSONToShift(JSONShift ss) {
-        return new Shift(ss.getName(), ss.getShort_name(), ss.getId(),
+        return new Shift(ss.getName(), ss.getShort_name(), ss.getEmployerIndex(), ss.getId(),
                 convertJSONToShiftTime(ss.getStartTime()), convertJSONToShiftTime(ss.getEndTime()),
                 ss.getColor(), ss.isToAlarm(), ss.isArchieved());
     }
@@ -101,13 +101,13 @@ public class JSONFactory {
         return new WorkDay(convertJSONToCalendarDate(swd.getDate()), swd.getShift());
     }
 
-    public static JSONSettings convertSettingsToJSON(Settings s){
+    public static JSONSettings convertSettingsToJSON(Settings s) {
         JSONSettings js = new JSONSettings();
         js.getSettings().putAll(s.getMap());
         return js;
     }
 
-    public static Settings convertJSONToSettings(JSONSettings js){
+    public static Settings convertJSONToSettings(JSONSettings js) {
         Settings s = new Settings();
         s.getMap().putAll(js.getSettings());
         return s;
