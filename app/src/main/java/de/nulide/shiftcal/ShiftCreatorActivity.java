@@ -7,8 +7,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TimePicker;
 
@@ -21,7 +23,11 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
 import de.nulide.shiftcal.logic.io.IO;
+import de.nulide.shiftcal.logic.object.Employer;
+import de.nulide.shiftcal.logic.object.Employment;
 import de.nulide.shiftcal.logic.object.Settings;
 import de.nulide.shiftcal.logic.object.Shift;
 import de.nulide.shiftcal.logic.object.ShiftCalendar;
@@ -30,6 +36,9 @@ import de.nulide.shiftcal.tools.ColorHelper;
 
 public class ShiftCreatorActivity extends AppCompatActivity implements View.OnClickListener, TimePickerDialog.OnTimeSetListener {
 
+    private Employment em;
+    private ArrayList<Employer> employers;
+    private ArrayList<String> employerOption = new ArrayList<String>();
     private ShiftCalendar sc;
     private int toEditShift = -1;
     private ShiftTime stStart;
@@ -39,6 +48,7 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
     private FloatingActionButton fabDoneShift;
     private EditText etViewName;
     private EditText etViewSName;
+    private Spinner spinnerEmployer;
     private Button btnStartTime;
     private Button btnEndTime;
     private Button btnCP;
@@ -53,7 +63,7 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Settings settings  = IO.readSettings(getFilesDir());
+        Settings settings = IO.readSettings(getFilesDir());
         int color = ColorHelper.changeActivityColors(this, toolbar, settings);
 
         Bundle bundle = getIntent().getExtras();
@@ -61,12 +71,21 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
 
         sc = IO.readShiftCal(getFilesDir());
         stStart = new ShiftTime(0, 0);
-        stEnd = new ShiftTime(0,0);
+        stEnd = new ShiftTime(0, 0);
 
+        em = IO.readEmployment(getFilesDir());
+        employers = new ArrayList<>(em.getEmployerList());
+        for (int i = 0; i < employers.size(); i++) {
+            employerOption.add(employers.get(i).getName());
+        }
 
         fabDoneShift = findViewById(R.id.fabDoneShift);
         fabDoneShift.setOnClickListener(this);
         fabDoneShift.setBackgroundTintList(ColorStateList.valueOf(color));
+        spinnerEmployer = findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, employerOption);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerEmployer.setAdapter(adapter);
         etViewName = findViewById(R.id.scEditTextName);
         etViewSName = findViewById(R.id.scEditTextSName);
         btnStartTime = findViewById(R.id.btnStartTime);
@@ -78,8 +97,8 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
         swAlarmForShift = findViewById(R.id.swAlarmForShift);
         swAlarmForShift.setChecked(true);
         swAlarmForShift.setEnabled(false);
-        if(settings.isAvailable(Settings.SET_ALARM_ON_OFF)){
-            if(new Boolean(settings.getSetting(Settings.SET_ALARM_ON_OFF))){
+        if (settings.isAvailable(Settings.SET_ALARM_ON_OFF)) {
+            if (new Boolean(settings.getSetting(Settings.SET_ALARM_ON_OFF))) {
                 swAlarmForShift.setEnabled(true);
             }
         }
@@ -105,9 +124,9 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
 
             if (!name.isEmpty() && !sname.isEmpty()) {
                 Shift nS;
-                if(swAlarmForShift.isEnabled()) {
+                if (swAlarmForShift.isEnabled()) {
                     nS = new Shift(name, sname, sc.getNextShiftId(), stStart, stEnd, ((ColorDrawable) btnCP.getBackground()).getColor(), swAlarmForShift.isChecked(), false);
-                }else{
+                } else {
                     nS = new Shift(name, sname, sc.getNextShiftId(), stStart, stEnd, ((ColorDrawable) btnCP.getBackground()).getColor(), true, false);
                 }
                 if (toEditShift != -1) {
@@ -142,7 +161,7 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
             ColorPickerDialogBuilder
                     .with(this)
                     .setTitle("Choose color")
-                    .initialColor(((ColorDrawable)btnCP.getBackground()).getColor())
+                    .initialColor(((ColorDrawable) btnCP.getBackground()).getColor())
                     .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                     .density(12)
                     .setPositiveButton("ok", new ColorPickerClickListener() {
@@ -171,19 +190,19 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
         updateTime();
     }
 
-    public void updateTime(){
+    public void updateTime() {
         btnStartTime.setText(stStart.toString());
         btnEndTime.setText(stEnd.toString());
     }
 
-    public void updateButtonColors(int color){
+    public void updateButtonColors(int color) {
         btnStartTime.setBackgroundColor(color);
         btnEndTime.setBackgroundColor(color);
         btnCP.setBackgroundColor(color);
         btnCP.setText(String.format("#%06X", (0xFFFFFF & color)));
 
 
-        int[] rgb = { Color.red(color), Color.green(color), Color.blue(color) };
+        int[] rgb = {Color.red(color), Color.green(color), Color.blue(color)};
         int brightness = (int) Math.sqrt(rgb[0] * rgb[0] * .241 + rgb[1]
                 * rgb[1] * .691 + rgb[2] * rgb[2] * .068);
 
@@ -191,7 +210,7 @@ public class ShiftCreatorActivity extends AppCompatActivity implements View.OnCl
             btnCP.setTextColor(Color.BLACK);
             btnStartTime.setTextColor(Color.BLACK);
             btnEndTime.setTextColor(Color.BLACK);
-        }else{
+        } else {
             btnCP.setTextColor(Color.WHITE);
             btnStartTime.setTextColor(Color.WHITE);
             btnEndTime.setTextColor(Color.WHITE);

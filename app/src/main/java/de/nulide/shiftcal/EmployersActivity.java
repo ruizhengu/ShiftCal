@@ -54,7 +54,6 @@ public class EmployersActivity extends AppCompatActivity implements View.OnClick
     public void updateEmployers() {
         em = IO.readEmployment(getFilesDir());
         employers = new ArrayList<>(em.getEmployerList());
-        Log.i("Test", String.valueOf(employers));
         EmployerAdapter adapter = new EmployerAdapter(this, employers);
         listViewEmployers.setAdapter(adapter);
     }
