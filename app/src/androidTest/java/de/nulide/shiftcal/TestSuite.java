@@ -1,9 +1,5 @@
 package de.nulide.shiftcal;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Rule;
@@ -17,13 +13,14 @@ public class TestSuite {
     @Rule
     public ActivityScenarioRule<CalendarActivity> activityScenarioRule = new ActivityScenarioRule<>(CalendarActivity.class);
 
-    /** Before the development:
+    /**
+     * Before the development:
      * Turn on the "Sync" functionality in Settings.
      * 1. Click the "menu" icon in the top right corner of the home page.
      * 2. Click "Settings".
      * 3. Click "Sync".
      * 4. Turn on the switch to enable sync functionality.
-     * */
+     */
 
     @Test
     public void createEmployer() {
