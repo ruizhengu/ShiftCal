@@ -15,7 +15,9 @@ public class TestSuite {
 
     /**
      * Before the development:
-     * Turn on the "Sync" functionality in Settings.
+     * Please make sure the emulator is connected to the Internet.
+     * Please login your Google account on the emulator to make sure you can access the Calendar app.
+     * Turn on the "Sync" functionality in Settings:
      * 1. Click the "menu" icon in the top right corner of the home page.
      * 2. Click "Settings".
      * 3. Click "Sync".
@@ -85,22 +87,27 @@ public class TestSuite {
         // 19. Click date "10" in the calendar.
         // 20. Click the "✓" icon in the bottom right corner.
         // 21. Launch the "Calendar" application.
-        // 22. Assert that the 10th of this month has the "WD - Weekday" event.
-        // 23. Launch the "ShiftCal" application.
-        // 24. Click the "edit" icon on the bottom right corner.
-        // 25. Click the "S" icon above the "edit" icon.
-        // 26. Click "Delete".
-        // 27. Click date "10" in the calendar.
-        // 28. Click the "✓" icon in the bottom right corner.
-        // 29. Click the "menu" icon in the top right corner on the home page.
-        // 30. Click "Shifts".
-        // 31. Long click "Weekday" on the "Shifts" page.
-        // 32. Click the "Delete" in the popup window.
-        // 33. Use "press back" to return to the home page.
+        // 22. Click the "WD - Weekday" Calendar event.
+        // 23. Assert the event name to "WD - Weekday".
+        // 24. Assert the event date to "Saturday, December 10".
+        // 25. Click the "⋮" button in the top right corner of the Calendar event.
+        // 26. Click "Delete" in the popup menu.
+        // 27. Click "DELETE" in the dialog.
+        // 28. Launch the "ShiftCal" application.
+        // 29. Click the "edit" icon on the bottom right corner.
+        // 30. Click the "S" icon above the "edit" icon.
+        // 31. Click "Delete".
+        // 32. Click date "10" in the calendar.
+        // 33. Click the "✓" icon in the bottom right corner.
         // 34. Click the "menu" icon in the top right corner of the home page.
-        // 35. Click "Employers".
-        // 36. Long click "Sheffield" on the "Employers" page.
-        // 37. Click "Delete" in the popup window.
+        // 35. Click "Shifts".
+        // 36. Long click "Weekday" on the "Shifts" page.
+        // 37. Click the "Delete" in the popup window.
         // 38. Use "press back" to return to the home page.
+        // 39. Click the "menu" icon in the top right corner of the home page.
+        // 40. Click "Employers".
+        // 41. Long click "Sheffield" on the "Employers" page.
+        // 42. Click "Delete" in the popup window.
+        // 43. Use "press back" to return to the home page.
     }
 }
