@@ -1,6 +1,9 @@
 package de.nulide.shiftcal;
 
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.uiautomator.UiDevice;
 
 import org.junit.Rule;
 import org.junit.Test;
