@@ -28,11 +28,11 @@ public class CalendarSyncActivity extends AppCompatActivity implements CompoundB
         setContentView(R.layout.activity_calendar_sync);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        settings  = IO.readSettings(getFilesDir());
+        settings = IO.readSettings(getFilesDir());
         int color = ColorHelper.changeActivityColors(this, toolbar, settings);
         swCalendarSync = findViewById(R.id.swCalendarSync);
-        if(settings.isAvailable(Settings.SET_SYNC)){
-            if(new Boolean(settings.getSetting(Settings.SET_SYNC))){
+        if (settings.isAvailable(Settings.SET_SYNC)) {
+            if (new Boolean(settings.getSetting(Settings.SET_SYNC))) {
 
             }
         }
@@ -41,9 +41,9 @@ public class CalendarSyncActivity extends AppCompatActivity implements CompoundB
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
-        if(settings.isAvailable(Settings.SET_SYNC)) {
+        if (settings.isAvailable(Settings.SET_SYNC)) {
             if ((PermissionHandler.checkCalendar(this) && new Boolean(settings.getSetting(Settings.SET_SYNC)))) {
                 swCalendarSync.setChecked(true);
             } else {
@@ -57,17 +57,17 @@ public class CalendarSyncActivity extends AppCompatActivity implements CompoundB
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(buttonView == swCalendarSync) {
+        if (buttonView == swCalendarSync) {
             settings.setSetting(Settings.SET_SYNC, new Boolean(isChecked).toString());
             IO.writeSettings(getFilesDir(), this, settings);
             if (isChecked) {
                 if (!PermissionHandler.checkCalendar(this)) {
                     PermissionHandler.requestCalendar(this);
                     swCalendarSync.setChecked(false);
-                }else{
+                } else {
                     SyncHandler.sync(this);
                 }
-            }else{
+            } else {
                 CalendarController.deleteCalendar(getContentResolver());
             }
         }
