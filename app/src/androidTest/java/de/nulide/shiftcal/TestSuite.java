@@ -17,6 +17,9 @@ public class TestSuite {
     public ActivityScenarioRule<CalendarActivity> activityScenarioRule = new ActivityScenarioRule<>(CalendarActivity.class);
 
     /**
+     * The application is a calendar for managing your employers and shifts.
+     * You can also sync your created shifts in Google Calendar.
+     *
      * Before the development:
      * Please make sure the emulator is connected to the Internet.
      * Please login your Google account on the emulator to make sure you can access the Calendar app.
