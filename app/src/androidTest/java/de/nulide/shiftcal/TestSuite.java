@@ -31,8 +31,8 @@ public class TestSuite {
         // 7. Click the menu icon in the top-right corner.
         // 8. Click "Shifts".
         // 9. Click the + icon on the bottom-right corner.
-        // 10. Enter "Weekday" in the Name field (then press enter on the keyboard).
-        // 11. Enter "WD" in the Short Name field (then press enter on the keyboard).
+        // 10. Enter "Weekday" in the Name field.
+        // 11. Enter "WD" in the Short Name field.
         // 12. Click the button of Start Time, click 9 then click OK.
         // 13. Click the button of End Time, click 17 then click OK.
         // 14. Click the ✓ icon.
