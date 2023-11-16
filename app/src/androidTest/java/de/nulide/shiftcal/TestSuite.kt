@@ -1,34 +1,23 @@
-package de.nulide.shiftcal;
+package de.nulide.shiftcal
 
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
 
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.uiautomator.UiDevice;
+@RunWith(AndroidJUnit4::class)
+class TestSuite {
+    private var device: UiDevice =
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-
-@RunWith(JUnit4.class)
-public class TestSuite {
-
-    @Rule
-    public ActivityScenarioRule<CalendarActivity> activityScenarioRule = new ActivityScenarioRule<>(CalendarActivity.class);
-
-    /**
-     * The application is a calendar for managing your employers and shifts.
-     * <p>
-     * You are required to implement the test case by the instruction and the corresponding tools.
-     * <p>
-     * Example - Click the menu icon in the top-right corner - Espresso
-     * You must use Espresso to implement this step.
-     */
-
-    UiDevice device = UiDevice.getInstance(getInstrumentation());
+    @get:Rule
+    val activityRule = ActivityScenarioRule(CalendarActivity::class.java)
 
     @Test
-    public void setShifts() {
+    fun setShifts() {
         // 1. Click the menu icon in the top-right corner - Espresso
         // 2. Click "Employers" - Espresso
         // 3. Click the + icon on the bottom-right corner - Espresso
